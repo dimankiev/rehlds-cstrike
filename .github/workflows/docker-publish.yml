@@ -71,8 +71,8 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
             
-            # Edge tag for main branch
-            type=edge,branch=main
+            # Edge tag for master branch (changed from main to master)
+            type=edge,branch=master
             
             # SHA-based tags for traceability
             type=sha,prefix=sha-,format=short
@@ -84,7 +84,7 @@ jobs:
             org.opencontainers.image.vendor=dimankiev
             org.opencontainers.image.url=${{ github.server_url }}/${{ github.repository }}
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
-            org.opencontainers.image.documentation=${{ github.server_url }}/${{ github.repository }}/blob/main/README.md
+            org.opencontainers.image.documentation=${{ github.server_url }}/${{ github.repository }}/blob/master/README.md
 
       - name: Print generated tags
         run: |
