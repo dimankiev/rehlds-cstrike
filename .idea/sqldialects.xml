@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/server-example/cstrike/addons/amxmodx/scripting/testsuite/sqlxtest.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server-example/cstrike/addons/yapb/data/train/as_oilrig.prc" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server-example/cstrike/addons/yapb/data/train/cs_747.prc" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server-example/cstrike/addons/yapb/data/train/cs_italy.prc" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server-example/cstrike/addons/yapb/data/train/cs_office.prc" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server-example/cstrike/addons/yapb/data/train/cs_siege.prc" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server-example/cstrike/addons/yapb/data/train/de_cbble.prc" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server-example/cstrike/addons/yapb/data/train/de_survivor.prc" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server-example/cstrike/addons/yapb/data/train/de_vertigo.prc" dialect="GenericSQL" />
+  </component>
+</project>

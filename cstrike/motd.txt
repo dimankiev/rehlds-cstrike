@@ -1,7 +1,11 @@
-<h1>Welcome to ReHLDS CStrike Docker</h1>
+<img src="https://github.com/dimankiev/rehlds-cstrike/blob/master/banner.png?raw=true" alt="ReHLDS CStrike Docker Banner" style="width: 100%; height: auto;">
+
+<h1>
+    Welcome to ReHLDS CStrike Server
+</h1>
 
 <div>
-This server uses Docker.
-For more information visit
-https://github.com/blsalin/rehlds-cstrike
+    This is a Docker container for running a ReHLDS CStrike server.
+    To grab this container and host your own server, visit this repository:
+    https://github.com/dimankiev/rehlds-cstrike
 </div>
