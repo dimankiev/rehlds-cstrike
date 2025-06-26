@@ -1,22 +1,54 @@
-FROM dimankiev/rehlds-cstrike
+FROM dimankiev/rehlds-cstrike:edge
 
-# Install YaPB Bots
-COPY cstrike/addons/yapb /opt/steam/hlds/cstrike/addons/yapb
+# Copy everything from cstrike to temp location first
+COPY ./cstrike /tmp/custom-cstrike
 
-# Connect YaPB to Metamod
-COPY cstrike/addons/metamod/plugins.ini /opt/steam/hlds/cstrike/addons/metamod/plugins-temp.ini
-RUN cat /opt/steam/hlds/cstrike/addons/metamod/plugins-temp.ini >> /opt/steam/hlds/cstrike/addons/amxmodx/metamod/plugins.ini
+# Create necessary directories first
+RUN mkdir -p /opt/steam/hlds/cstrike/addons/amxmodx/metamod && \
+    mkdir -p /opt/steam/hlds/cstrike/addons/yapb && \
+    mkdir -p /opt/steam/hlds/cstrike/addons/amxmodx/{configs,plugins,scripting,data} && \
+    mkdir -p /opt/steam/hlds/cstrike/sound
 
-# Remove temporary metamod plugins.ini
-RUN rm /opt/steam/hlds/cstrike/addons/metamod/plugins-temp.ini
+# Install YaPB Bots if they exist
+RUN if [ -d "/tmp/custom-cstrike/addons/yapb" ]; then \
+      cp -rf /tmp/custom-cstrike/addons/yapb/* /opt/steam/hlds/cstrike/addons/yapb/ 2>/dev/null || true; \
+    fi
 
-# Install amxmodx plugins
-COPY cstrike/addons/amxmodx/configs /opt/steam/hlds/cstrike/addons/amxmodx
-COPY cstrike/addons/amxmodx/plugins /opt/steam/hlds/cstrike/addons/amxmodx
-COPY cstrike/addons/amxmodx/scripting /opt/steam/hlds/cstrike/addons/amxmodx
-COPY cstrike/addons/amxmodx/data /opt/steam/hlds/cstrike/addons/amxmodx
+# Create necessary directories first
+RUN mkdir -p /opt/steam/hlds/cstrike/addons/amxmodx/metamod && \
+    mkdir -p /opt/steam/hlds/cstrike/addons/yapb && \
+    mkdir -p /opt/steam/hlds/cstrike/addons/amxmodx/{configs,plugins,scripting,data} && \
+    mkdir -p /opt/steam/hlds/cstrike/sound
 
-# Copy amxmodx plugins dependencies
-COPY cstrike/sound /opt/steam/hlds/cstrike
+# Handle Metamod plugins.ini if it exists
+RUN if [ -f "/tmp/custom-cstrike/addons/metamod/plugins.ini" ]; then \
+      touch /opt/steam/hlds/cstrike/addons/amxmodx/metamod/plugins.ini && \
+      cat /tmp/custom-cstrike/addons/metamod/plugins.ini >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini; \
+    fi
+
+# Install AMX Mod X files if they exist
+RUN if [ -d "/tmp/custom-cstrike/addons/amxmodx/configs" ]; then \
+      cp -rf /tmp/custom-cstrike/addons/amxmodx/configs/* /opt/steam/hlds/cstrike/addons/amxmodx/configs/ 2>/dev/null || true; \
+    fi
+
+RUN if [ -d "/tmp/custom-cstrike/addons/amxmodx/plugins" ]; then \
+      cp -rf /tmp/custom-cstrike/addons/amxmodx/plugins/* /opt/steam/hlds/cstrike/addons/amxmodx/plugins/ 2>/dev/null || true; \
+    fi
+
+RUN if [ -d "/tmp/custom-cstrike/addons/amxmodx/scripting" ]; then \
+      cp -rf /tmp/custom-cstrike/addons/amxmodx/scripting/* /opt/steam/hlds/cstrike/addons/amxmodx/scripting/ 2>/dev/null || true; \
+    fi
+
+RUN if [ -d "/tmp/custom-cstrike/addons/amxmodx/data" ]; then \
+      cp -rf /tmp/custom-cstrike/addons/amxmodx/data/* /opt/steam/hlds/cstrike/addons/amxmodx/data/ 2>/dev/null || true; \
+    fi
+
+# Copy sound files if they exist
+RUN if [ -d "/tmp/custom-cstrike/sound" ]; then \
+      cp -rf /tmp/custom-cstrike/sound/* /opt/steam/hlds/cstrike/sound/ 2>/dev/null || true; \
+    fi
+
+# Copy any other custom files (maps, configs, etc.)
+RUN find /tmp/custom-cstrike -type f \( ! -path "*/addons/*" ! -path "*/sound/*" \) -exec cp -f {} /opt/steam/hlds/cstrike/ \; 2>/dev/null || true
 
 ENTRYPOINT ["./hlds_run", "-timeout 3", "-pingboost 1", "-game cstrike", "+map de_dust2", "+maxplayers 32"]
