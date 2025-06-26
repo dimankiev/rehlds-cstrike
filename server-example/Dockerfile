@@ -1,4 +1,4 @@
-FROM blsalin/rehlds-cstrike
+FROM dimankiev/rehlds-cstrike
 
 COPY cstrike /opt/steam/hlds/cstrike 
 RUN cat /opt/steam/hlds/cstrike/mapcycle.txt > /opt/steam/hlds/cstrike/addons/amxmodx/configs/maps.ini
