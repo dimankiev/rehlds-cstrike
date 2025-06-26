@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM debian:bookworm-slim
 
 ARG rehlds_build=3.13.0.788
 ARG metamod_version=1.3.0.138
