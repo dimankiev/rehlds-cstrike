@@ -11,6 +11,7 @@ To set the YaPB password, edit the `yapb.cfg` file located in the `cstrike/addon
 ```plaintext
 yb_password "your_password_here"
 ```
+You can also control YaPB bots with `amx_pbmenu` menu command (Bind to any key first).
 ### Adding yourself to the admin list
 To add yourself as an admin, edit the `cstrike/addons/amxmodx/configs/users.ini` file. Add your SteamID or IP address in the following format:
 ```plaintext
