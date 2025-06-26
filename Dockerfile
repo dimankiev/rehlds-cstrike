@@ -32,10 +32,10 @@ RUN groupadd -r steam && useradd -r -g steam -m -d /opt/steam steam
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     ca-certificates=20230311 \
-    curl=7.88.1-10+deb12u5 \
-    lib32gcc-s1=12.2.0-14 \
+    curl=7.88.1-10+deb12u12 \
+    lib32gcc-s1=12.2.0-14+deb12u1 \
     unzip=6.0-28 \
-    xz-utils=5.4.1-0.2 \
+    xz-utils=5.4.1-1 \
     zip=3.0-13 \
     gcc-multilib=4:12.2.0-3 \
     g++-multilib=4:12.2.0-3 \
