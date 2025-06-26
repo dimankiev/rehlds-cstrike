@@ -59,7 +59,7 @@ jobs:
         uses: docker/metadata-action@v5.7.0
         with:
           images: |
-            ${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
+            ${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
             ${{ env.REGISTRY_GHCR }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
           tags: |
             # Branch-based tags for development
