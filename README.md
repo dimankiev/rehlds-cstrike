@@ -1,11 +1,6 @@
 ![banner](banner.png)
 
-# ReHLDS Docker
-
-# Fork of HLDS Docker dproto
-
-This started out from the docker setup for "Half-Life Dedicated Server as a Docker Image". Now, it serves as a Counter-Strike 1.6 Dedicated Server as a Docker image.
-Aside from the difference from the original, this is using an updated version of Debian and changes to some of the modules and plugins.
+# ReHLDS Docker Counter-Strike 1.6 Server
 
 ## Half-Life Dedicated Server as a Docker image
 
@@ -16,11 +11,15 @@ anything about Linux or ReHLDS to start a server. You just need Docker and
 this image.
 
 ## Quick Start
-
-Start a new server by running:
-
+You can choose to start with my example server configuration:
 ```bash
-docker run --name "cstrike" -p 27015:27015 -p 27015:27015/udp blsalin/rehlds-cstrike
+cd server-example
+docker compose up -d
+```
+
+Or start a new fresh server by running:
+```bash
+docker run --name "cstrike" -p 27015:27015 -p 27015:27015/udp dimankiev/rehlds-cstrike
 ```
 
 This will create a container named "cstrike" with the 27015 port open (on UDP and TCP).
@@ -53,15 +52,7 @@ This will create a container named "cstrike" with the 27015 port open (on UDP an
 * de_dust2
 * de_inferno
 
-## Advanced
-
-Check out the example under server-example. It allows adding maps and configurations by appending (and overwriting) the original cstrike folder.
-The example contains an override for the mapcycle file.
-
-
-This is how you can run the advanced docker-compose: 
-```bash
-docker build . --tag rehlds-cstrike
-cd server-example
-docker-compose up -d --build
-```
+## Credits
+This repository was based on fork of HLDS server repo
+https://github.com/BLSAlin/rehlds-cstrike
+I just decided to enhance example server configuration, bump dependencies and fix the image.
